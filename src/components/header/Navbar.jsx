@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.webp";
 import Underwear from "../../assets/underwear.webp";
 
-import { AiOutlineUser, AiOutlineSearch } from "react-icons/ai";
-
 import CartContext from "../../context/cart-context";
 
 const Navbar = () => {
@@ -27,18 +25,22 @@ const Navbar = () => {
                 <li className="hidden md:block">
                     <Link to="/">HOME</Link>{" "}
                 </li>
+
                 <li>
                     <Link to="collection">SHOP</Link>{" "}
                 </li>
+
                 <li className="hidden md:block">
                     <a
-                        href="https://thesujitmemane.vercel.app/"
+                        href="https://tusharupadhyay.vercel.app/"
                         target="_blank"
+                        rel="noreferrer"
                     >
                         About Me
                     </a>
                 </li>
             </ul>
+
             <div className="md:w-1/3   flex flex-row  items-center justify-end space-x-4">
                 <Link to="cart">
                     <div className="relative p-1 md:p-2 cursor-pointer ">
