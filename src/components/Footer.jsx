@@ -11,7 +11,7 @@ const Footer = () => {
                         &copy;{new Date().getFullYear()} All Rights Reserved ||
                         Designed and Coded by{" "}
                         <a
-                            className="text-gray-800 font-bold hover:opacity-10 transition-all hover:text-duration-300 "
+                            className="text-gray-800 font-bold hover:text-gray-800 transition-colors duration-300 "
                             href="https://tusharupadhyay.vercel.app/"
                         >
                             Tushar Upadhyay
@@ -25,7 +25,7 @@ const Footer = () => {
                                 href="https://github.com/tushar-upadhya"
                                 target="_blank"
                                 rel="noreferrer"
-                                className="hover:opacity-10 transition-all hover:text-duration-300 w-6 h-6 rounded-full flex justify-center items-center text-2xl"
+                                className="hover:text-gray-800 transition-colors duration-300 w-6 h-6 rounded-full flex justify-center items-center text-2xl"
                             >
                                 <AiFillGithub />
                             </a>
@@ -36,7 +36,7 @@ const Footer = () => {
                                 href="https://www.linkedin.com/in/tushar-upadhyay-54029b135/"
                                 target="_blank"
                                 rel="noreferrer"
-                                className="hover:opacity-10 transition-all hover:text-duration-300 w-6 h-6 rounded-full flex justify-center items-center text-2xl"
+                                className="hover:text-gray-800 transition-colors duration-300 w-6 h-6 rounded-full flex justify-center items-center text-2xl"
                             >
                                 <AiFillLinkedin />
                             </a>

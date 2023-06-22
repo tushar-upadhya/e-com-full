@@ -1,19 +1,16 @@
-import { useRef } from "react";
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { FiFeather } from "react-icons/fi";
+import { FiFeather, FiArrowUp, FiArrowDown } from "react-icons/fi";
 import { TbArrowAutofitWidth } from "react-icons/tb";
 import { GiSplitCross } from "react-icons/gi";
-import { FiArrowUp, FiArrowDown } from "react-icons/fi";
-
 import CartContext from "../context/cart-context";
 
 const Product = () => {
-    const enteredAmount = useRef();
     const cartCtx = useContext(CartContext);
     const params = useParams();
     const [productData, setProductData] = useState({});
     const [visible, setVisible] = useState(false);
+    const [amount, setAmount] = useState(1);
 
     useEffect(() => {
         const timeout = setTimeout(() => {
@@ -42,7 +39,7 @@ const Product = () => {
         {
             id: "2",
             qs: "What is your Return/Exchange Policy?",
-            ans: "Typically, all our garments qualify for an exchange within a 14 day delivery window. ",
+            ans: "Typically, all our garments qualify for an exchange within a 14 day delivery window.",
             open: true,
         },
         {
@@ -52,6 +49,7 @@ const Product = () => {
             open: false,
         },
     ]);
+
     const toggleChangeHandler = (id) => {
         const newAccordion = accordion.map((accord) => {
             if (accord.id === id) {
@@ -68,17 +66,14 @@ const Product = () => {
         });
         setAccordion(newAccordion);
     };
+
     const addToCartHandler = (e) => {
         e.preventDefault();
 
-        const enteredAmountValue = enteredAmount.current.value;
-        const enteredAmountNumber = +enteredAmountValue;
-
-        if (enteredAmountNumber > 0 && enteredAmountNumber < 5) {
-            console.log("hi");
+        if (amount > 0 && amount < 5) {
             cartCtx.addItem({
                 id: productData.id,
-                amount: enteredAmountNumber,
+                amount: amount,
                 price: productData.price,
                 name: productData.name,
             });
@@ -86,10 +81,18 @@ const Product = () => {
         }
     };
 
+    const decrementAmount = () => {
+        setAmount((prevAmount) => Math.max(prevAmount - 1, 1));
+    };
+
+    const incrementAmount = () => {
+        setAmount((prevAmount) => Math.min(prevAmount + 1, 4));
+    };
+
     return (
         <div className="container mx-auto my-12">
             <div
-                className={` fixed bottom-4 right-4 bg-[#F7D031] uppercase border-2 border-black  font-bold text-black px-6 py-2 rounded-md ${
+                className={`fixed bottom-4 right-4 bg-[#F7D031] uppercase border-2 border-black font-bold text-black px-6 py-2 rounded-md ${
                     visible ? "opacity-100" : "opacity-0"
                 } transition-opacity duration-100`}
             >
@@ -97,30 +100,34 @@ const Product = () => {
             </div>
             <div className="my-4 p-8 flex flex-col items-center justify-center space-y-4">
                 <p className="uppercase text-xs">
-                    Home <span className="opacity-50">/ </span> Collection{" "}
-                    <span className="opacity-50">/ </span>{" "}
+                    Home <span className="opacity-50">/</span> Collection{" "}
+                    <span className="opacity-50">/</span>{" "}
                     <span className="font-bold">{productData.name}</span>
                 </p>
             </div>
-            <div className="flex  flex-col space-y-4 md:space-y-0 md:flex-row  items-center justify-between p-12 md:space-x-24">
+            <div className="flex flex-col space-y-4 md:space-y-0 md:flex-row items-center justify-between p-4 md:p-8 lg:p-12 md:space-x-8">
                 <div className="md:w-1/2">
-                    <img src={productData.imageUrl} className="w-full" />
+                    <img
+                        src={productData.imageUrl}
+                        className="w-full"
+                        alt={productData.name}
+                    />
                 </div>
-                <div className="md:w-1/2 flex flex-col items-start justify-center space-y-4 p-4 ">
+                <div className="md:w-1/2 flex flex-col items-start justify-center space-y-4 p-4">
                     <h1 className="text-black text-2xl md:text-4xl font-bold">
                         {productData.name}
                     </h1>
-                    <p className="text-black text-2xl ">
+                    <p className="text-black text-2xl">
                         ₹{productData.price}
-                        <span className="text-sm mx-4">
+                        <span className="text-sm mx-2">
                             (Incl. of all taxes)
                         </span>
                     </p>
-                    <div className="text-black  w-full hidden md:block ">
+                    <div className="text-black w-full hidden md:block">
                         <h1 className="text-2xl font-bold uppercase text-black my-2">
                             PRODUCT HIGHLIGHTS
                         </h1>
-                        <div className="flex flex-row font-semibold items-center justify-between flex-1 p-2 md:p-8 ">
+                        <div className="flex flex-row font-semibold items-center justify-between flex-1 p-4 md:p-8">
                             <div className="flex flex-col justify-between items-center space-y-2">
                                 <FiFeather size={50} />
                                 <p className="text-center">Feels Soft & Cozy</p>
@@ -131,7 +138,7 @@ const Product = () => {
                                     Body Adaptive Fit
                                 </p>
                             </div>
-                            <div className="flex flex-col  justify-between items-center space-y-2">
+                            <div className="flex flex-col justify-between items-center space-y-2">
                                 <GiSplitCross size={50} />
                                 <p className="text-center max-w-sm">
                                     Made with MicroModal
@@ -139,54 +146,79 @@ const Product = () => {
                             </div>
                         </div>
                     </div>
+
                     <form
-                        className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0  space-x-2 "
+                        className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 space-x-2"
                         onSubmit={addToCartHandler}
                     >
-                        <input
-                            ref={enteredAmount}
-                            type="number"
-                            max="5"
-                            min="1"
-                            defaultValue="1"
-                            className=" px-16 py-1 md:px-8 md:py-4  input  text-xl rounded text-center text-black font-bold border-2 border-black "
-                        />
-                        <button className="px-16 md:px-28  md:py-1 text-md md:text-xl text-center  bg-[#F7D031] border-2 text-black font-bold border-black">
+                        <div className="flex items-center divide-x divide-solid  border border-black">
+                            <button
+                                type="button"
+                                className="px-2 py-2 md:px-4 md:py-2 input text-xl rounded text-center  hover:text-black "
+                                onClick={decrementAmount}
+                            >
+                                -
+                            </button>
+
+                            <input
+                                type="number"
+                                max="5"
+                                min="1"
+                                value={amount}
+                                className="px-2 py-2 md:px-4 md:py-2 input text-xl rounded text-center text-black font-semi-bold "
+                                readOnly
+                            />
+
+                            <button
+                                type="button"
+                                className="px-2 py-2 md:px-4 md:py-2 input text-xl rounded text-center   hover:text-black "
+                                onClick={incrementAmount}
+                            >
+                                +
+                            </button>
+                        </div>
+
+                        <button className="px-2 md:px-4 md:py-2 text-md md:text-xl text-center text-black font-bold border border-black uppercase ml-0.5em bg-[#F7D031]">
                             ADD TO CART
                         </button>
                     </form>
                 </div>
             </div>
-            <div className="hidden md:block">
-                <div className=" flex flex-col items-center justify-between space-y-4 text-black">
-                    <h1 className="text-4xl font-bold ">FAQs</h1>
-                    <div className="w-[600px] ">
-                        {accordion.map((accord) => {
-                            return (
-                                <div className=" p-2" id={accord.id}>
-                                    <div
-                                        onClick={() =>
-                                            toggleChangeHandler(accord.id)
-                                        }
-                                        className=" cursor-pointer flex flex-row items-center justify-between text-xl font-bold py-4  "
-                                    >
-                                        <div>{accord.qs}</div>
-                                        {accord.open ? (
-                                            <FiArrowUp />
-                                        ) : (
-                                            <FiArrowDown />
-                                        )}
-                                    </div>
+
+            <div className="md:flex md:items-center md:justify-center">
+                <div className="flex flex-col items-center justify-between space-y-4 text-black max-w-2xl overflow-hidden">
+                    <h1 className="text-4xl font-bold">FAQs</h1>
+
+                    <div className="w-full">
+                        {accordion.map((accord) => (
+                            <div
+                                key={accord.id}
+                                className={`p-2 transition-colors duration-300 ${
+                                    accord.open ? "bg-[#F7D031]" : ""
+                                }`}
+                                id={accord.id}
+                            >
+                                <div
+                                    onClick={() =>
+                                        toggleChangeHandler(accord.id)
+                                    }
+                                    className="cursor-pointer flex flex-row items-center justify-between text-lg md:text-xl font-bold py-4"
+                                >
+                                    <div>{accord.qs}</div>
                                     {accord.open ? (
-                                        <div className="text-md scale-in-ver-top">
-                                            {accord.ans}
-                                        </div>
+                                        <FiArrowUp />
                                     ) : (
-                                        ""
+                                        <FiArrowDown />
                                     )}
                                 </div>
-                            );
-                        })}
+
+                                {accord.open && (
+                                    <div className="text-base md:text-md transition-opacity duration-300">
+                                        {accord.ans}
+                                    </div>
+                                )}
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>

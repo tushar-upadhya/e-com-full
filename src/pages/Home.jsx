@@ -1,5 +1,4 @@
-import { useEffect, useState, useContext } from "react";
-
+import { Link } from "react-router-dom";
 import Hero from "./../assets/hero.webp";
 
 import Mention from "../components/Mention";
@@ -9,58 +8,48 @@ import Deal from "../components/Deal";
 import Category from "../components/Category";
 import Info from "../components/Info";
 
-import { Link } from "react-router-dom";
-
-import cartContext from "../context/cart-context";
-
 const Home = () => {
-    const cartCtx = useContext(cartContext);
-    const scrollToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
-    };
     return (
         <div>
             <div
-                className="bg-cover   bg-no-repeat  h-auto bg-gradient-to-b from-black via-black-opacity-46 to-transparent"
-                style={{
-                    backgroundImage: `url(${Hero})`,
-                    backgroundPosition: "top",
-                    filter: "contrast(0.9)",
-                }}
+                className="bg-cover bg-no-repeat bg-center bg-gradient-to-b from-black via-black-opacity-46 to-transparent"
+                style={{ backgroundImage: `url(${Hero})` }}
             >
-                <div className="px-12 py-8 md:py-40   flex flex-col space-y-8 items-center justify-between">
-                    <h1 className="text-5xl md:text-6xl text-center text-white font-bold text-shadow">
+                <div className="px-8 py-16 md:py-32 lg:py-40 flex flex-col items-center justify-center text-center text-white">
+                    <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold">
                         Introducing 24/7 Inactivewear
                     </h1>
-                    <p className="text-xl text-white  text-shadow">
-                        New In: Tees & Shorts
-                    </p>
-                    <div className="flex flex-row items-center justify-center space-x-3 ">
+
+                    <p className="text-xl mt-4">New In: Tees & Shorts</p>
+
+                    <div className="flex flex-col md:flex-row items-center justify-center space-y-3 md:space-y-0 md:space-x-3 mt-8">
                         <Link
                             to="collection"
-                            onClick={scrollToTop}
-                            className="hidden md:block text-black border-2 border-black text-md bg-white px-6 py-4 font-bold"
+                            className="bg-white text-black border-2 border-black text-md px-6 py-3 font-bold uppercase"
                         >
-                            SHOP TEES AND SHORTS
+                            Shop Tees and Shorts
                         </Link>
+
                         <Link
                             to="collection"
-                            onClick={scrollToTop}
-                            className="text-black border-2 border-black text-md bg-white px-8 py-4 font-bold"
+                            className="bg-white text-black border-2 border-black text-md px-6 py-3 font-bold uppercase"
                         >
-                            SHOP UNDIES
+                            Shop Undies
                         </Link>
                     </div>
                 </div>
             </div>
+
             <Mention />
+
             <SampleWears />
+
             <Reviews />
+
             <Deal />
+
             <Category />
+
             <Info />
         </div>
     );
