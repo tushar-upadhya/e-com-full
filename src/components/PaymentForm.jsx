@@ -18,7 +18,6 @@ const PaymentForm = ({ onClose }) => {
     const enteredCityRef = useRef();
 
     const placeOrderHandler = (event) => {
-        console.log("clicked");
         event.preventDefault();
         const enteredName = enteredNameRef.current.value;
         const enteredCity = enteredCityRef.current.value;
@@ -41,8 +40,6 @@ const PaymentForm = ({ onClose }) => {
             postal: enteredPostal,
             city: enteredCity,
         });
-        console.log("Order is Placed");
-        console.log(isFormIsValid);
     };
 
     const nameControlClasses = `control ${
@@ -68,7 +65,7 @@ const PaymentForm = ({ onClose }) => {
                         type="text"
                         id="name"
                         placeholder="Enter Your Name"
-                        className="px-12 py-2 overflow-none uppercase outline-none border"
+                        className="px-4 py-2 outline-none border"
                     />
                     {!isFormIsValid.isEnteredNameIsValid && (
                         <p className="err-text">Please Enter a Valid Name</p>
@@ -80,11 +77,10 @@ const PaymentForm = ({ onClose }) => {
                         type="text"
                         id="postal"
                         placeholder="Enter Your Postal Code"
-                        className="px-12 py-2 overflow-none outline-none border uppercase"
+                        className="px-4 py-2 outline-none border"
                     />
                     {!isFormIsValid.isEnteredPostalIsValid && (
                         <p className="err-text">
-                            {" "}
                             Please Enter a valid Postal Code
                         </p>
                     )}
@@ -95,7 +91,7 @@ const PaymentForm = ({ onClose }) => {
                         type="text"
                         id="city"
                         placeholder="Enter Your City"
-                        className="px-12 py-2 overflow-none outline-none border uppercase"
+                        className="px-4 py-2 outline-none border"
                     />
                     {!isFormIsValid.isEnteredCityIsValid && (
                         <p className="err-text">
@@ -107,14 +103,13 @@ const PaymentForm = ({ onClose }) => {
                     <StripeCheckout
                         token={onToken}
                         name="Bummer Checkout"
-                        className="bg-black"
                         currency="INR"
                         disable={!isFormIsValid}
                         amount={CartCtx.totalAmount * 100}
                         stripeKey="pk_test_51NLoE1SFUrEnHmjWjaUynnAaE5Y2c61N5kw0pnwqbl0KkNnqQafn0v0XPsPxjPesMpCjNi8wOLcfcOy7fGX5PTd700m9XYU54J"
                     />
                     <button
-                        className={`px-8 py-1 uppercase font-bold bg-[#F7D031] text-black `}
+                        className="px-8 py-1 uppercase font-bold bg-[#F7D031] text-black"
                         onClick={() => onClose()}
                     >
                         Close

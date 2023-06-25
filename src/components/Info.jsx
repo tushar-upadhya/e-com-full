@@ -11,7 +11,7 @@ const Info = () => {
                 <div className="flex flex-col items-center justify-between space-y-2">
                     <FaFeatherAlt
                         size={50}
-                        className="hover:text-blue-500 transition-colors duration-300"
+                        className="cursor-pointer hover:text-yellow-300 transition-colors duration-300"
                     />
                     <h2 className="text-xs text-center font-semibold uppercase">
                         Super-Soft
@@ -20,7 +20,7 @@ const Info = () => {
                 <div className="flex flex-col items-center justify-between space-y-2">
                     <FaTemperatureHigh
                         size={50}
-                        className="hover:text-blue-500 transition-colors duration-300"
+                        className="cursor-pointer hover:text-yellow-300 transition-colors duration-300"
                     />
                     <h2 className="text-xs font-semibold uppercase">
                         Breathable
@@ -29,7 +29,7 @@ const Info = () => {
                 <div className="flex flex-col items-center justify-between space-y-2">
                     <FaLaugh
                         size={50}
-                        className="hover:text-blue-500 transition-colors duration-300"
+                        className="cursor-pointer hover:text-yellow-300 transition-colors duration-300"
                     />
                     <h2 className="text-xs font-semibold uppercase">
                         Expressive

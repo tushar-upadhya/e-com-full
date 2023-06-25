@@ -3,7 +3,11 @@ const SampleWearElement = ({ underwear }) => {
     return (
         <Link to={`/collection/${underwear.id}`}>
             <div className="w-60 flex flex-col  justify-center space-y-1 cursor-pointer">
-                <img src={underwear.imageUrl} className="w-60" />
+                <img
+                    src={underwear.imageUrl}
+                    className="w-full h-full transition-transform duration-300 transform hover:scale-105"
+                    alt="Matching Undies"
+                />
                 <h1 className="font-bold px-1  text-black">{underwear.name}</h1>
                 <div className="flex flex-row items-center justify-between px-1 ">
                     <p>₹ {underwear.price} </p>

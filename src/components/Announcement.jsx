@@ -7,7 +7,7 @@ const Announcement = () => {
                 JUST LAUNCHED:{" "}
                 <Link
                     to="collection"
-                    className="underline mx-2 hover:text-blue-500"
+                    className="underline mx-2  hover:opacity-90"
                 >
                     SHORTS & TEES.
                 </Link>
