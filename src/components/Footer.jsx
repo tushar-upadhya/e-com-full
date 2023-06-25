@@ -1,27 +1,35 @@
-import React from "react";
-import Logo from "./../assets/logo.webp";
-import { Link } from "react-router-dom";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+
 const Footer = () => {
-  return (
-    <div className="bg-[#F7D031] p-8  border-black border-2 flex flex-row items-center justify-center md:justify-between">
-      <img src={Logo} className="w-48" />
-      <div className="hidden md:block">
-        <ul className=" flex flex-row  space-x-8 items-center justify-center uppercase text-sm font-bold px-4">
-          <li>
-            <Link to="/">HOME</Link>{" "}
-          </li>
-          <li>
-            <Link to="collection">SHOP</Link>{" "}
-          </li>
-          <li>
-            <a href="https://thesujitmemane.vercel.app/" target="_blank">
-              About Me
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  );
+    return (
+        <footer className="bg-yellow-300 text-center text-gray-500 py-4 ">
+            <p className="text-sm sm:text-base">
+                &copy; {new Date().getFullYear()} TUSHAR UPADHYAY
+            </p>
+            <div className="flex justify-center space-x-4 mt-4">
+                <a
+                    href="https://github.com/your-github-profile"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <FaGithub
+                        size={20}
+                        className="text-gray-500 hover:text-blue-500 transition-colors duration-300"
+                    />
+                </a>
+                <a
+                    href="https://www.linkedin.com/in/your-linkedin-profile"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <FaLinkedin
+                        size={20}
+                        className="text-gray-500 hover:text-blue-500 transition-colors duration-300"
+                    />
+                </a>
+            </div>
+        </footer>
+    );
 };
 
 export default Footer;

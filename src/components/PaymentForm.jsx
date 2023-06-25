@@ -111,7 +111,7 @@ const PaymentForm = ({ onClose }) => {
                         currency="INR"
                         disable={!isFormIsValid}
                         amount={CartCtx.totalAmount * 100}
-                        stripeKey="pk_test_51N9M5SSF2sALXBLTuoV4OMgbrvSrMKwKEBIjn0BksmyfXjdXx03pdL5z3f4SKLwIF8ZMWQeq1wab3e86DobKpr0400njUeoBgc"
+                        stripeKey="pk_test_51NLoE1SFUrEnHmjWjaUynnAaE5Y2c61N5kw0pnwqbl0KkNnqQafn0v0XPsPxjPesMpCjNi8wOLcfcOy7fGX5PTd700m9XYU54J"
                     />
                     <button
                         className={`px-8 py-1 uppercase font-bold bg-[#F7D031] text-black `}
