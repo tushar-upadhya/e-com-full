@@ -4,23 +4,21 @@ import { useContext } from "react";
 import CartContext from "../context/cart-context";
 
 const CartItem = ({ cartItem }) => {
-    const cartCtx = useContext(CartContext);
-
+    const CartCtx = useContext(CartContext);
     const cartItemAddHandler = (cartItem) => {
-        cartCtx.addItem({
+        CartCtx.addItem({
             ...cartItem,
             amount: 1,
         });
     };
 
     const cartItemRemoveHandler = (id) => {
-        cartCtx.removeItem(id);
+        CartCtx.removeItem(id);
     };
-
     return (
         <div className="flex flex-col items-start text-black justify-between space-y-4 shadow w-[300px] md:w-[400px] p-4">
-            <h1 className="text-xl font-bold capitalize">{cartItem.name}</h1>
-            <div className="flex flex-row items-center justify-between w-full">
+            <h1 className="text-xl font-bold capitalize"> {cartItem.name} </h1>
+            <div className="flex flex-row items-center justify-between w-full ">
                 <div className="flex flex-row items-center space-x-2">
                     <span className="font-bold italic">
                         Rs {cartItem.price}
@@ -28,7 +26,7 @@ const CartItem = ({ cartItem }) => {
                     <span>
                         <ImCross size={20} />
                     </span>
-                    <span>{cartItem.amount}</span>
+                    <span>{cartItem.amount} </span>
                 </div>
                 <div className="flex flex-row items-center justify-between space-x-4">
                     <AiFillPlusCircle
@@ -43,12 +41,6 @@ const CartItem = ({ cartItem }) => {
                     />
                 </div>
             </div>
-
-            <img
-                src={cartItem.imageUrl}
-                alt={cartItem.name}
-                className="w-20 h-20"
-            />
         </div>
     );
 };

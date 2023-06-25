@@ -1,51 +1,27 @@
-import { AiFillLinkedin, AiFillGithub } from "react-icons/ai";
-
+import React from "react";
+import Logo from "./../assets/logo.webp";
+import { Link } from "react-router-dom";
 const Footer = () => {
-    return (
-        <footer className=" bg-[#F7D031] text-center sm:text-xl lg:py-4">
-            <div className="container mx-auto">
-                <div className="text-sm flex flex-col gap-y-6 lg:flex-row items-center justify-between">
-                    {/* copyright */}
-
-                    <div>
-                        &copy;{new Date().getFullYear()} All Rights Reserved ||
-                        Designed and Coded by{" "}
-                        <a
-                            className="text-[#846c5b]  font-bold hover:text-gray-800 transition-colors duration-300 "
-                            href="https://tusharupadhyay.vercel.app/"
-                        >
-                            Tushar Upadhyay
-                        </a>{" "}
-                    </div>
-
-                    {/* socials */}
-                    <div className="flex gap-x-2 ">
-                        <div>
-                            <a
-                                href="https://github.com/tushar-upadhya"
-                                target="_blank"
-                                rel="noreferrer"
-                                className="text-[#846c5b]  hover:text-gray-800 transition-colors duration-300 w-6 h-6 rounded-full flex justify-center items-center text-2xl"
-                            >
-                                <AiFillGithub />
-                            </a>
-                        </div>
-
-                        <div>
-                            <a
-                                href="https://www.linkedin.com/in/tushar-upadhyay-54029b135/"
-                                target="_blank"
-                                rel="noreferrer"
-                                className="text-[#846c5b] hover:text-gray-800 transition-colors duration-300 w-6 h-6 rounded-full flex justify-center items-center text-2xl"
-                            >
-                                <AiFillLinkedin />
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    );
+  return (
+    <div className="bg-[#F7D031] p-8  border-black border-2 flex flex-row items-center justify-center md:justify-between">
+      <img src={Logo} className="w-48" />
+      <div className="hidden md:block">
+        <ul className=" flex flex-row  space-x-8 items-center justify-center uppercase text-sm font-bold px-4">
+          <li>
+            <Link to="/">HOME</Link>{" "}
+          </li>
+          <li>
+            <Link to="collection">SHOP</Link>{" "}
+          </li>
+          <li>
+            <a href="https://thesujitmemane.vercel.app/" target="_blank">
+              About Me
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
 };
 
 export default Footer;

@@ -88,7 +88,6 @@ const CartProvider = (props) => {
     };
     console.log(cartState.items);
     console.log("bye");
-
     return (
         <CartContext.Provider value={cartContext}>
             {props.children}
