@@ -63,7 +63,6 @@ const cartReducer = (state, action) => {
     return defaultCartState;
 };
 const CartProvider = (props) => {
-    console.log("hi");
     const [cartState, dispatchCartAction] = useReducer(
         cartReducer,
         defaultCartState
@@ -86,8 +85,7 @@ const CartProvider = (props) => {
         removeItem: removeItemFromHandler,
         clearCart: clearCart,
     };
-    console.log(cartState.items);
-    console.log("bye");
+    // console.log(cartState.items);
     return (
         <CartContext.Provider value={cartContext}>
             {props.children}
